@@ -1,7 +1,7 @@
 ﻿import math
 import sys
 
-operacije = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17"]
+operacije = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"]
 
 def sestevanje (x, y):
     return (x + y);
@@ -35,6 +35,43 @@ def nl (x):
     return (math.log(x))
 def dl (x):
     return (math.log10(x))
+def vbinarni (x):
+    L = []
+    while True:
+        if (x) >= 1:
+            O = str(x % 2)
+            L.extend(O)
+            o = int(x % 2)
+            x = int((x - o) / 2)
+        else:
+            break
+    L.reverse()
+    return L
+def prastevila (x):
+    n = x - 1
+    while True:
+        if x > 2:
+            while True:
+
+                if n > 1:
+                    a = (x % n)
+                    if a == 0:
+                        print ("To stevilo ni prastevilo")
+                        sys.exit()
+                    elif a>0 and n>1:
+                        n = n-1
+                    else:
+                        break
+                else:
+                    return (x)
+        elif x == 2:
+            return (x)
+        elif x == 1:
+            print ("1 ni prastevilo")
+            sys.exit()
+        else:
+            print ("Error")
+
 
 def vnos():
     while True:
@@ -48,7 +85,7 @@ def vnos():
 
 def operacija():
     while True:
-        operacija = raw_input("Katero operacijo bi zeleli (1/2/3/4/5/6/7/8/9/10/11/12/13/14/15/16/17)? ")
+        operacija = raw_input("Katero operacijo bi zeleli (1/2/3/4/5/6/7/8/9/10/11/12/13/14/15/16/17/18/19/20)? ")
         if operacija in operacije:
             break
         else:
@@ -96,6 +133,10 @@ while True:
     print ("Logaritem:")
     print ("    16. Naravni")
     print ("    17. Desetiski")
+    print ("Pretvorba:")
+    print ("    18.Iz desetiskega v binarni sistem") #Se vedno so potrebne dodelave, saj izpisuje v stolpcu
+    print ("    19.Iz binarnega v desetiski sistem(V IZDELAVI!!!)")#izdelaj
+    print ("20. Preverjanje prastevil:") # ce stevilo ni prastevilo te vrze iz programa
 
     nacin = operacija()
     if nacin == "1":
@@ -131,7 +172,7 @@ while True:
             print ("Enacba nima realnih resitev")
         elif d == 0:
             x = (-b)/(2*a)
-            print ("Enačba ima eno rešitev:")
+            print ("Enacba ima eno resitev:")
             print (x)
         else:
             r1 = float((-b+math.sqrt(b**2-4*a*c))/(2*a))
@@ -171,6 +212,16 @@ while True:
     elif nacin == "17":
         a = vnos()
         print (dl(a))
+    elif nacin == "18":
+        a = int(raw_input("Vnesite stevilo v desetiskem sistemu:"))
+        L = vbinarni(a)
+        for i in L:
+            print (i)
+    elif nacin == "20":
+        a = int(raw_input("Katero stevilo zelis preveriti:"))
+        print (prastevila(a))
+        print ("Je prastevilo")
+
 
     ponovi()
 
